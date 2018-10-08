@@ -9,7 +9,12 @@
     = favicon_link_tag 'favicon.ico'
         
   %body{class: params[:controller].gsub("/", "-")}
-
+    %header{style: "max-height: 100px;"}
+      = link_to root_path do
+        = image_tag "logo.jpg", style: "height: 100px;"
+      .pull-right{style: "margin-right: 15px; margin-top: 40px;"}
+        -if @cart.present?
+          = link_to "Cart (#{number_to_currency @cart.total_price})", @cart, class: "btn btn-info"
     .container-fluid.margin-top-100
       = yield
 

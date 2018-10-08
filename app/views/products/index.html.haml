@@ -1,0 +1,10 @@
+.row
+  - @products.each do |product|
+    .col-sm-4.text-center{style: "min-height: 240px;"}
+      = image_tag product.image, class: "img-rounded", style: "max-height: 200px;"
+      %br
+      = product.title
+      %br
+      = number_to_currency(product.price)
+      %br
+      = link_to "Add to Cart", add_to_cart_product_path(product)

@@ -7,3 +7,14 @@ development:
   pool:       5
   username: username
   password: 'password'
+
+test:
+  adapter:    postgresql
+  host:       localhost
+  database:   pre_employment_app_development
+  template:  template0
+  timeout:    5000
+  encoding:   unicode
+  pool:       5
+  username: username
+  password: 'password'

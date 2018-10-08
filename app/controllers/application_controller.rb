@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   skip_before_action :verify_authenticity_token, if: :json_request?
 
+   #function before loads
+  before_filter :load_cart
+   def load_cart
+     @cart = Cart.find(session[:cart_id]) if session[:cart_id].present? 
+   end
+
+  
   def json_request?
     request.format.json?
   end

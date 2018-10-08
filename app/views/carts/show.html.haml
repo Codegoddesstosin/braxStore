@@ -1,0 +1,20 @@
+%table
+%thead
+%tr
+  %th Product Name
+  %th Quantity
+  %th Price
+  %th Total
+- @cart.cartships.each do |cartship|
+  %tr
+    %td= cartship.product.title
+    %td= cartship.quantity
+    %td= number_to_currency(cartship.product.price)
+    %td= number_to_currency(cartship.product.price * cartship.quantity)
+%tr
+  %td{colspan: 3} Total
+  %td= number_to_currency(@cart.total_price)
+
+.pull-right
+  = form_tag pay_cart_path(@cart), method: :post do
+    %script{src: "https://checkout.stripe.com/checkout.js", class: "stripe-button", data: {key: "pk_test_dIRuTAFHn0xFywX7kJGCVJhS", amount: @cart .total_price * 100, name: "BraxStore", description: "One stop shop for your candies", image: image_path("Logo.png"), locale: "auto"}} 
